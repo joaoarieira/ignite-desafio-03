@@ -14,6 +14,9 @@ const Header = (): JSX.Element => {
     <Container>
       <Link to="/">
         <img src={logo} alt="Rocketshoes" />
+        <button
+          onClick={() => { localStorage.setItem('@RocketShoes:cart', ""); document.location.reload() }}
+        >Clear</button>
       </Link>
 
       <Cart to="/cart">
