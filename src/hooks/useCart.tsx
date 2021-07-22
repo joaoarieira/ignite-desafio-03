@@ -51,10 +51,32 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
   const addProduct = async (productId: number) => {
     try {
-      // TODO
-    } catch {
-      // TODO
-    }
+      const response_stock_data = (await api.get(`/stock/${productId}`)).data;
+      const product_amount = response_stock_data.amount;
+
+      const response_products_data = (await api.get(`/products/${productId}`)).data;
+      const product = response_products_data;
+
+      const newProduct = {
+        ...product,
+        amount: 1
+      }
+
+      // console.log("product", product);
+      // console.log("product_amount", product_amount);
+      // console.log("newProduct", newProduct);
+      // console.log("cart", cart);
+
+      let newCart = [...cart, newProduct];
+
+      localStorage.setItem('@RocketShoes:cart', JSON.stringify(newCart));
+      setCart(newCart);
+
+
+
+    } catch (error) {
+      toast.error(error.message);
+    };
   };
 
   const removeProduct = (productId: number) => {

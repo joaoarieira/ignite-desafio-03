@@ -24,7 +24,6 @@ interface CartItemsAmount {
 const Home = (): JSX.Element => {
   const [products, setProducts] = useState<ProductFormatted[]>([]);
   const { addProduct, cart } = useCart();
-  console.log("cart", cart);
 
   // const cartItemsAmount = cart.reduce((sumAmount, product) => {
   //   //TODO
